@@ -13,10 +13,8 @@ def get_book_by_id(db: Session, book_id: int):
 
 def create_book(db: Session, book: BookSchema):
     book = Book(id=book.id,title=book.title, description=book.description)
-
     db.add(book)
     db.commit()
-    db.rollback()
     db.refresh(book)
     return book
 
@@ -29,7 +27,6 @@ def remove_book(db: Session, book_id: int):
 
 def update_book(db: Session, book_id: int, title: str, description: str):
     book = get_book_by_id(db=db, book_id=book_id)
-
     book.title = title
     book.description = description
 
