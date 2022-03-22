@@ -13,6 +13,14 @@ class BookSchema(BaseModel):
     class Config:
         orm_mode = True
 
+class ChapterSchema(BaseModel):
+    id: Optional[int] = None
+    chapter_name: Optional[str] = None
+    description: Optional[str] = None
+
+    class Config:
+        orm_mode = True
+
 
 class Request(GenericModel, Generic[T]):
     parameter: Optional[T] = Field(...)
