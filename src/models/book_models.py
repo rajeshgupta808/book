@@ -5,7 +5,7 @@ class Book(Base):
     __tablename__ = "book"
 
     id = Column(Integer, primary_key=True, autoincrement=False,index=True)
-    title = Column(String)
+    title = Column()
     description = Column(String)
 
 class Chapter(Base):
