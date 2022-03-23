@@ -31,7 +31,7 @@ class RequestBook(BaseModel):
 
 
 class Response(GenericModel, Generic[T]):
-    code: str
-    status: str
-    message: str
+    code: Optional[str]
+    status: Optional[str]
+    message: Optional[str]
     result: Optional[T]

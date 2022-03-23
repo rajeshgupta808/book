@@ -18,10 +18,12 @@ async def get_books(skip: int = 0, limit: int = 100, db: Session = Depends(get_d
     books = book_crud.get_book(db, skip, limit)
     return Response(status="Ok", code="200", message="Success fetch all data", result=books)
 
-# @router.get("/{id}")
-# async def get_books(request:RequestBook,skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
-#     book=book_crud.get_book_by_id(db, book_id=request.parameter.id)
-#     return Response(status="Ok", code="200", message="Success fetch data by id", result=book)
+@router.get("/{id}")
+async def get_books(book_id:int, db: Session = Depends(get_db)):
+    book = book_crud.get_book_by_id(db, book_id=book_id)
+    if book is None:
+        return Response(code="404", message="Book not found")
+    return Response(status="Ok", code="200", message="Success fetch data by id", result=book)
 
 
 @router.put("/update")
